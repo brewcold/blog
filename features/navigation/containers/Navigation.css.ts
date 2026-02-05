@@ -55,23 +55,3 @@ export const categoryBtn = style({
   fontFamily: '"Mona Sans", "Pretendard", monospace',
   cursor: 'pointer',
 })
-
-export const tooltip = style({
-  position: 'absolute',
-  top: dp(5),
-  right: dp(10),
-  paddingBlock: dp(1),
-  paddingInline: dp(2),
-  border: `1px solid ${color.background_invert}`,
-  color: color.text,
-  fontFamily: 'Google Sans Code',
-  borderRadius: dp(4),
-  fontSize: dp(3.25),
-  zIndex: 100,
-  '@media': {
-    'screen and (min-width: 600px)': {
-      top: dp(3.5),
-      right: dp(25),
-    },
-  },
-})
