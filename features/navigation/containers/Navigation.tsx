@@ -63,6 +63,11 @@ function NavigationContent() {
           <MenuBtn type="button" onClick={e => handleMenuButton(e, 'hamburger')} aria-label={`모든 글 리스트를 펼칩니다`}>
             <HamburgerMenuIcon width="21" height="21" />
           </MenuBtn>
+          <MenuBtn type="button">
+            <Link href="https://thoughts.yooooon.com" target="_blank" rel="noopener noreferrer" aria-label={`신변잡기 블로그로 이동합니다`}>
+              🤔
+            </Link>
+          </MenuBtn>
           <MenuBtn
             type="button"
             onClick={toggleTheme}

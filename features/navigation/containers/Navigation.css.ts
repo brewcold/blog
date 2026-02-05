@@ -35,7 +35,7 @@ export const buttonGroup = style({
   '@media': {
     [breakpoints.desktop]: {
       flexDirection: 'row-reverse',
-      gap: dp(1),
+      gap: dp(2),
     },
   },
 })
@@ -71,7 +71,7 @@ export const tooltip = style({
   '@media': {
     'screen and (min-width: 600px)': {
       top: dp(3.5),
-      right: dp(16),
+      right: dp(25),
     },
   },
 })
