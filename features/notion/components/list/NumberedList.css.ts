@@ -1,5 +1,6 @@
 import { style } from '@vanilla-extract/css'
 import { dp } from 'styles/dp'
+import { color } from 'styles/vars/color.css'
 import { layouts } from 'styles/vars/layouts.css'
 
 export const ol = style({
@@ -17,6 +18,10 @@ export const ol = style({
 })
 
 export const li = style({
+  color: color.text,
+})
+
+export const liContent = style({
   lineHeight: 1.65,
   wordBreak: 'break-word',
   width: 'auto',
