@@ -28,7 +28,7 @@ export const postLinkFrame = style({
   justifyContent: 'space-between',
   alignItems: 'center',
   listStyleType: 'none',
-  borderBottom: `1px dashed ${color.notion_default}`,
+  borderBottom: `1px solid ${color.background_opacity95}`,
   color: color.text,
   '@media': {
     '(hover: hover) and (pointer: fine)': {
