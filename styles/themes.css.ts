@@ -14,7 +14,7 @@ globalStyle('body[data-theme="light"]', {
   vars: {
     [color.white]: '#ffffff',
     [color.background]: '#ffffff',
-    [color.background_opacity95]: 'rgba(255,255,255,0.95)',
+    [color.background_opacity95]: 'rgba(235,235,235,0.95)',
     [color.background_invert]: '#212121',
     [color.text]: '#212121',
     [color.text_invert]: '#ffffff',
@@ -48,7 +48,7 @@ globalStyle('body[data-theme="dark"]', {
   vars: {
     [color.white]: '#ffffff',
     [color.background]: '#111111',
-    [color.background_opacity95]: 'rgba(11,11,11,0.95)',
+    [color.background_opacity95]: 'rgba(44,44,44,0.95)',
     [color.background_invert]: '#fafafa',
     [color.text]: '#fafafa',
     [color.text_invert]: '#111111',
@@ -66,7 +66,7 @@ globalStyle('body[data-theme="dark"]', {
     [color.notion_pink]: '#BA4A78',
     [color.notion_red]: '#BE524B',
     [color.notion_background_default]: '#111111',
-    [color.notion_background_gray]: '#191919',
+    [color.notion_background_gray]: '#262626',
     [color.notion_background_brown]: '#2E2724',
     [color.notion_background_orange]: '#36291F',
     [color.notion_background_yellow]: '#372E20',
