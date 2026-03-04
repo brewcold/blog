@@ -8,7 +8,7 @@ export const ol = style({
   paddingLeft: dp(5),
   marginBlock: dp(2),
   fontSize: dp(4.25),
-  marginInline: layouts.paragraph,
+  marginInline: layouts.full,
   maxWidth: `calc(100% - ${dp(14)})`,
   selectors: {
     'ol &': {

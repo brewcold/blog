@@ -7,7 +7,7 @@ export const h1 = style({
   fontWeight: '600',
   margin: '1.5rem 0 0.5rem 0',
   lineHeight: 1.3,
-  marginInline: layouts.paragraph,
+  marginInline: layouts.full,
 })
 
 export const h2 = style({
@@ -15,7 +15,7 @@ export const h2 = style({
   fontWeight: '600',
   margin: '1.2rem 0 0.4rem 0',
   lineHeight: 1.3,
-  marginInline: layouts.paragraph,
+  marginInline: layouts.full,
 })
 
 export const h3 = style({
@@ -24,5 +24,5 @@ export const h3 = style({
   marginBlockEnd: dp(1.32),
   fontWeight: '500',
   lineHeight: 1.3,
-  marginInline: layouts.paragraph,
+  marginInline: layouts.full,
 })

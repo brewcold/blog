@@ -7,7 +7,7 @@ export const ul = style({
   paddingLeft: dp(4),
   marginBlock: dp(2),
   fontSize: dp(4.25),
-  marginInline: layouts.paragraph,
+  marginInline: layouts.full,
   maxWidth: `calc(100% - ${dp(14)})`,
   selectors: {
     'ul &': {

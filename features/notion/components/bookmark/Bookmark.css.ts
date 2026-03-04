@@ -28,7 +28,7 @@ export const bookmarkInner = style({
   backgroundColor: color.background_opacity95,
   flexDirection: 'column',
   justifyContent: 'center',
-  padding: layouts.paragraph,
+  padding: layouts.full,
   alignItems: 'flex-start',
 })
 

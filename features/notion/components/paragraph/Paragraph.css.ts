@@ -8,6 +8,6 @@ export const paragraph = style({
   lineHeight: 1.65,
   fontSize: dp(4.25),
   color: color.text,
-  marginInline: layouts.paragraph,
+  marginInline: layouts.full,
   wordBreak: 'break-word',
 })

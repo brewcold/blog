@@ -4,7 +4,7 @@ import { color } from 'styles/vars/color.css'
 import { layouts } from 'styles/vars/layouts.css'
 
 export const tocWrapper = style({
-  marginInline: layouts.paragraph,
+  marginInline: layouts.full,
   marginBlock: dp(4),
   padding: dp(4),
   borderRadius: dp(2),

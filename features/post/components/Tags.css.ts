@@ -5,7 +5,7 @@ import { layouts } from 'styles/vars/layouts.css'
 
 export const tagsFrame = style({
   display: 'flex',
-  gap: dp(2),
+  gap: dp(1),
   marginBlock: layouts.full,
 })
 
@@ -15,9 +15,9 @@ export const tag = style({
   fontFamily: '"Mona Sans", "Pretendard", monospace',
   fontWeight: 500,
   lineHeight: 1.2,
-  backgroundColor: color.background_invert,
-  paddingBlock: dp(1.5),
+  backgroundColor: color.background_opacity95,
+  paddingBlock: dp(1),
   paddingInline: dp(2),
-  borderRadius: dp(1.2),
-  color: color.text_invert,
+  borderRadius: dp(3),
+  color: color.text,
 })
