@@ -12,20 +12,15 @@ export function PostListView() {
   return (
     <div className={css.postListFrame}>
       <div className={css.viewLink}>
-        {posts.map((p, i) => {
-          let renderYear = false
-          if (i === 0) return <PostListView.Row key={p.id} meta={p} renderYear />
-          const { date: prevDate } = getNotionPageMeta(posts[i - 1])
-          const { date: currDate } = getNotionPageMeta(p)
-          renderYear = prevDate.slice(0, 4) !== currDate.slice(0, 4)
-          return <PostListView.Row key={p.id} meta={p} renderYear={renderYear} />
-        })}
+        {posts.map(p => (
+          <PostListView.Row key={p.id} meta={p} />
+        ))}
       </div>
     </div>
   )
 }
 
-PostListView.Row = ({ meta, renderYear }: { meta: NotionPageMeta; renderYear: boolean }) => {
+PostListView.Row = ({ meta }: { meta: NotionPageMeta }) => {
   const postMeta = getNotionPageMeta(meta)
   const year = postMeta.date.slice(0, 4)
   const path = `/${year}/${postMeta.slug}`
@@ -34,11 +29,6 @@ PostListView.Row = ({ meta, renderYear }: { meta: NotionPageMeta; renderYear: bo
       <Link href={path} className={css.postLinkInner}>
         <span className={css.postLinkTitle}>{`${postMeta.title}`}</span>
       </Link>
-      {renderYear && (
-        <Link href={path} className={css.postLinkInner}>
-          <span className={css.postLinkTitle}>{`${postMeta.date.slice(0, 4)}`}</span>
-        </Link>
-      )}
     </li>
   )
 }

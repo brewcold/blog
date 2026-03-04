@@ -11,10 +11,15 @@ export const listFrame = style({
 const listItemBase = style([
   {
     fontSize: dp(4),
-    lineHeight: 1.65,
+    lineHeight: 1.5,
   },
 ])
-export const listLink = style([link])
+export const listLink = style([
+  link,
+  {
+    textDecoration: 'none',
+  },
+])
 export const listitem = styleVariants({
   1: [
     listItemBase,

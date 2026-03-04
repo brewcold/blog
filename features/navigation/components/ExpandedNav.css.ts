@@ -5,7 +5,7 @@ import { color } from 'styles/vars/color.css'
 
 export const wrapper = style({
   width: '100vw',
-  backgroundColor: color.background_opacity95,
+  backgroundColor: color.background,
   zIndex: 9,
   position: 'fixed',
   right: 0,
@@ -18,7 +18,7 @@ export const wrapper = style({
       visibility: 'hidden',
     },
     '&[data-open="true"]': {
-      opacity: 1,
+      opacity: 0.9,
       pointerEvents: 'auto',
       visibility: 'visible',
     },
@@ -36,12 +36,12 @@ export const frame = style({
   transform: 'translateY(5%)',
   '@media': {
     [breakpoints.desktop]: {
-      transform: 'translateY(-5%)',
+      transform: 'translateX(5%)',
     },
   },
   selectors: {
     '[data-open="true"] &': {
-      transform: 'translateY(0)',
+      transform: 'translateX(0) translateY(0)',
     },
   },
 })

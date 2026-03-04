@@ -13,6 +13,7 @@ import { TableOfContentsContainer } from 'features/tableOfContents'
 import type { Metadata } from 'next'
 import { Suspense } from 'react'
 import { ENV } from 'static/env'
+import * as pageStyles from './page.css'
 
 export interface PostPageProps {
   params: Promise<{
@@ -74,15 +75,15 @@ export default async function Post({ params }: PostPageProps) {
 
       <Top meta={meta} />
 
-      <TableOfContentsContainer />
-      <Spacing size={12} />
-
-      <Section>
-        <Suspense fallback={<>...</>}>
-          <RenderNotion blocks={currentPost} />
-          <Spacing size={12} />
-        </Suspense>
-      </Section>
+      <div className={pageStyles.contentLayout}>
+        <Section>
+          <Suspense fallback={<>...</>}>
+            <RenderNotion blocks={currentPost} />
+            <Spacing size={12} />
+          </Suspense>
+        </Section>
+        <TableOfContentsContainer />
+      </div>
       <Spacing size={48} />
     </>
   )

@@ -1,17 +1,12 @@
 import { style } from '@vanilla-extract/css'
 import { dp } from 'styles/dp'
-import { breakpoints } from 'styles/vars/breakpoints.css'
 import { color } from 'styles/vars/color.css'
 import { layouts } from 'styles/vars/layouts.css'
 
 export const postListFrame = style({
   padding: layouts.full,
   paddingBottom: dp(20),
-  '@media': {
-    [breakpoints.desktop]: {
-      paddingTop: dp(20),
-    },
-  },
+  paddingTop: dp(40),
 })
 
 export const viewLink = style({

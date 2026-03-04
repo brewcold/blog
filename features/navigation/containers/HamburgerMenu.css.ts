@@ -15,8 +15,8 @@ export const menuList = style({
 })
 
 export const title = style({
-  fontWeight: 600,
-  fontSize: dp(7.5),
+  fontWeight: 800,
+  fontSize: dp(4.25),
   lineHeight: 1.2,
   fontFamily: '"Mona Sans", "Pretendard", sans-serif',
   color: color.text,
@@ -37,7 +37,7 @@ export const articleList = style({
 
 export const articleListRow = style([
   {
-    marginBlock: dp(4.25),
+    marginBlock: dp(4),
     fontFamily: '"Mona Sans", "Pretendard", sans-serif',
     lineHeight: 1.2,
     color: color.text,

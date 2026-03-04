@@ -4,8 +4,8 @@ import { breakpoints } from 'styles/vars/breakpoints.css'
 import { color } from 'styles/vars/color.css'
 
 export const title = style({
-  fontSize: dp(8),
-  marginTop: dp(8),
+  fontSize: dp(4.5),
+  marginTop: dp(40),
   color: color.text,
   textAlign: 'left',
   verticalAlign: 'middle',
@@ -14,11 +14,9 @@ export const title = style({
   lineHeight: 1.3,
   '@media': {
     [breakpoints.desktop]: {
-      fontSize: dp(8),
       textAlign: 'left',
     },
     [breakpoints.desktop_wide]: {
-      fontSize: dp(8),
       textAlign: 'left',
     },
   },

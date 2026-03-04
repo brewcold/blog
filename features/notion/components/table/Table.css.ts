@@ -4,7 +4,7 @@ import { color } from 'styles/vars/color.css'
 import { layouts } from 'styles/vars/layouts.css'
 
 export const tableWrapper = style({
-  marginInline: layouts.paragraph,
+  marginInline: layouts.full,
   marginBlock: dp(2),
   overflowX: 'auto',
 })

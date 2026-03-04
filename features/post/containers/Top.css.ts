@@ -4,12 +4,11 @@ import { breakpoints } from 'styles/vars/breakpoints.css'
 import { layouts } from 'styles/vars/layouts.css'
 
 export const frame = style({
-  margin: '0 auto',
+  margin: '0',
   display: 'flex',
   flexDirection: 'column',
-  alignItems: 'center',
-  paddingInline: layouts.paragraph,
-  paddingTop: dp(12),
+  alignItems: 'flex-start',
+  paddingInline: layouts.full,
   marginBottom: dp(12),
   backgroundColor: 'transparent',
   '@media': {

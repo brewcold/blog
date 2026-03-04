@@ -23,7 +23,7 @@ export const frame = style({
       borderTop: 'none',
       height: dp(12),
       transform: 'translateY(0)',
-      alignItems: 'flex-start',
+      alignItems: 'center',
     },
   },
 })
@@ -48,10 +48,10 @@ export const categoryBtn = style({
   justifyContent: 'flex-start',
   alignItems: 'center',
   border: 'none',
-  fontSize: dp(4),
+  fontSize: dp(4.5),
   backgroundColor: 'transparent',
   color: color.text,
-  fontWeight: 500,
+  fontWeight: 800,
   fontFamily: '"Mona Sans", "Pretendard", monospace',
   cursor: 'pointer',
 })
