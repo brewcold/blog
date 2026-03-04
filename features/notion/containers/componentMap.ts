@@ -20,7 +20,6 @@ import { NotionDivider } from '../components/divider/NotionDivider'
 import type { ExtendedBlockTypes, NotionBlockComponent } from 'features/notion/types'
 import { Equation } from '../components/equation/Equation'
 import { Table } from '../components/table/Table'
-import { TableOfContents } from '../components/table/TableOfContents'
 
 export const blockComponentMap: Partial<{ [K in ExtendedBlockTypes]: NotionBlockComponent<K> }> = {
   bookmark: Bookmark,
@@ -50,7 +49,6 @@ export const blockComponentMap: Partial<{ [K in ExtendedBlockTypes]: NotionBlock
   quote: Quote,
   // synced_block: <></>,
   table: Table,
-  table_of_contents: TableOfContents as NotionBlockComponent<'table_of_contents'>,
   // table_row: <></>,
   // template: <></>,
   // to_do: <></>,
