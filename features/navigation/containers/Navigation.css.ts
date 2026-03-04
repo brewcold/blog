@@ -23,7 +23,7 @@ export const frame = style({
       borderTop: 'none',
       height: dp(12),
       transform: 'translateY(0)',
-      alignItems: 'flex-start',
+      alignItems: 'center',
     },
   },
 })

@@ -1,5 +1,5 @@
 'use client'
-import { HamburgerMenuIcon } from '@radix-ui/react-icons'
+import { HamburgerIcon } from '../components/HamburgerIcon'
 import { nextTheme, ThemeContext } from 'features/theme'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
@@ -61,7 +61,7 @@ function NavigationContent() {
         </div>
         <div className={css.buttonGroup}>
           <MenuBtn type="button" onClick={e => handleMenuButton(e, 'hamburger')} aria-label={`모든 글 리스트를 펼칩니다`}>
-            <HamburgerMenuIcon width="21" height="21" />
+            <HamburgerIcon open={key === 'hamburger'} />
           </MenuBtn>
           <MenuBtn type="button">
             <Link href="https://thoughts.yooooon.com" target="_blank" rel="noopener noreferrer" aria-label={`신변잡기 블로그로 이동합니다`}>
