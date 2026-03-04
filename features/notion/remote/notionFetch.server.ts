@@ -96,25 +96,23 @@ const getChildrenBlocks = async (parent_block_id: string): Promise<(BlockObjectR
   return results
 }
 
-const getAllChildrenBlocks = async (blocks: BlockObjectResponse[]) => {
-  'use cache'
-  cacheLife('minutes')
-  const result = await Promise.all(
-    blocks.map(async depth_block => {
-      if (depth_block.has_children) {
-        const children = await getChildrenBlocks(depth_block.id)
-        const type = depth_block.type
-        ;(depth_block as any)[type].children = children
-      }
-      return depth_block
-    })
+const getDepthChildrenBlocks = async (blocks: BlockObjectResponse[]): Promise<BlockObjectResponse[]> => {
+  return await Promise.all(
+    blocks.map(async b => {
+      if (!b.has_children) return b
+      const children = await getChildrenBlocks(b.id)
+      const resolved = await getDepthChildrenBlocks(children as BlockObjectResponse[])
+      const type = b.type
+      const content = (b as any)[type] ?? ((b as any)[type] = {})
+      content.children = resolved
+      return b
+    }),
   )
-  return result
 }
 
 export const getPost = async (block_id: string): Promise<BlockObjectResponse[]> => {
   const blocks = await getChildrenBlocks(block_id)
-  return await getAllChildrenBlocks(blocks as BlockObjectResponse[])
+  return await getDepthChildrenBlocks(blocks as BlockObjectResponse[])
 }
 
 export const getSingleBlock = async (block_id: string): Promise<GetBlockResponse> => {
