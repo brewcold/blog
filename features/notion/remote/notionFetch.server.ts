@@ -15,18 +15,15 @@ import type { NotionPageMeta } from '../types'
 const createNotionClient = () => new Client({ auth: ENV.NOTION_KEY })
 export const notion: Client = createNotionClient()
 
-const POST_LIST_CACHE: Record<string, Promise<NotionPageMeta[]>> = {
-  id: new Promise(() => []),
-}
-
-const GET_DATASRC_ID = async (database_id: string): Promise<{ id: string; name: string }[]> => {
+const getDataSrcId = async (database_id: string): Promise<{ id: string; name: string }[]> => {
   const result = (await notion.databases.retrieve({ database_id })) as DatabaseObjectResponse
   return result.data_sources
 }
 
-export const getPostList = async (database_id: string): Promise<NotionPageMeta[]> => {
+export const getCachedPostList = async (database_id: string): Promise<NotionPageMeta[]> => {
   'use cache'
-  const [dataSrc] = await GET_DATASRC_ID(database_id ?? ENV.NOTION_DATABASE_ID)
+  cacheLife('minutes')
+  const [dataSrc] = await getDataSrcId(database_id ?? ENV.NOTION_DATABASE_ID)
   const { id: data_source_id } = dataSrc
 
   const query: QueryDataSourceParameters = {
@@ -55,16 +52,6 @@ export const getPostList = async (database_id: string): Promise<NotionPageMeta[]
     console.error('\n', data_source_id, err, '\n', 'xxxx POSTLIST FETCH ERROR')
     return []
   }
-}
-
-export const getCachedPostList = async (database_id: string) => {
-  'use cache'
-  cacheLife('minutes')
-  if (!POST_LIST_CACHE[database_id]) {
-    POST_LIST_CACHE[database_id] = getPostList(database_id)
-  } else console.warn(`**${database_id.slice(0, 4)}`, 'vvvv CACHED POSTLIST')
-
-  return POST_LIST_CACHE[database_id]
 }
 
 export const getPostMetaData = async (page_id: string): Promise<NotionPageMeta> => {
@@ -103,9 +90,7 @@ const getDepthChildrenBlocks = async (blocks: BlockObjectResponse[]): Promise<Bl
       const children = await getChildrenBlocks(b.id)
       const resolved = await getDepthChildrenBlocks(children as BlockObjectResponse[])
       const type = b.type
-      const content = (b as any)[type] ?? ((b as any)[type] = {})
-      content.children = resolved
-      return b
+      return { ...b, [type]: { ...(b as any)[type], children: resolved } }
     }),
   )
 }
