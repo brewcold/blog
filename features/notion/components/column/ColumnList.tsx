@@ -1,6 +1,14 @@
-import type { NotionComponentProps } from 'features/notion/types'
+import { hasChildren, type NotionComponentProps } from 'features/notion/types'
+import { ChildrenBlocks } from '../../containers/ChildrenBlocks'
+import * as css from './ColumnList.css'
 
 export function ColumnList({ block }: NotionComponentProps<'column_list'>) {
-  //다른 column의 parent 블록으로, 레이아웃 기능만 하며 다른 정보는 포함되어 있지 않음. Column 컴포넌트를 받아 알아서 append해야 함
-  return <div />
+  if (!hasChildren(block)) return null
+  const columnCount = block.column_list.children?.length ?? 1
+
+  return (
+    <div className={css.columnList} style={{ gridTemplateColumns: `repeat(${columnCount}, 1fr)` }}>
+      <ChildrenBlocks childrenBlocks={block.column_list.children} />
+    </div>
+  )
 }

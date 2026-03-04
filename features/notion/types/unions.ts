@@ -26,6 +26,8 @@ export type TransformedNotionBlocks =
   | WithChildren<NotionBlock<'paragraph'>>
   | WithChildren<NotionBlock<'table'>>
   | WithChildren<NotionBlock<'table_of_contents'>>
+  | WithChildren<NotionBlock<'column_list'>>
+  | WithChildren<NotionBlock<'column'>>
   | WithChildren<NotionBlock<'quote'>>
   | WithChildren<NotionBlock<'toggle'>>
 
