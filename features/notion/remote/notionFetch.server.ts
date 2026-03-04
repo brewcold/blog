@@ -15,7 +15,7 @@ import type { NotionPageMeta } from '../types'
 const createNotionClient = () => new Client({ auth: ENV.NOTION_KEY })
 export const notion: Client = createNotionClient()
 
-const GET_DATASRC_ID = async (database_id: string): Promise<{ id: string; name: string }[]> => {
+const getDataSrcId = async (database_id: string): Promise<{ id: string; name: string }[]> => {
   const result = (await notion.databases.retrieve({ database_id })) as DatabaseObjectResponse
   return result.data_sources
 }
@@ -23,7 +23,7 @@ const GET_DATASRC_ID = async (database_id: string): Promise<{ id: string; name: 
 export const getCachedPostList = async (database_id: string): Promise<NotionPageMeta[]> => {
   'use cache'
   cacheLife('minutes')
-  const [dataSrc] = await GET_DATASRC_ID(database_id ?? ENV.NOTION_DATABASE_ID)
+  const [dataSrc] = await getDataSrcId(database_id ?? ENV.NOTION_DATABASE_ID)
   const { id: data_source_id } = dataSrc
 
   const query: QueryDataSourceParameters = {
