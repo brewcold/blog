@@ -1,13 +1,12 @@
 import { style } from '@vanilla-extract/css'
+import { tocBreakpoint } from 'app/(routes)/[year]/[slug]/page.css'
 import { dp } from 'styles/dp'
 import { layouts } from 'styles/vars/layouts.css'
-
-const tocBreakpoint = 'screen and (min-width: 62rem)'
 
 export const aside = style({
   paddingInline: layouts.full,
   order: -1,
-  marginBlock: dp(6),
+  marginBottom: dp(6),
 
   '@media': {
     [tocBreakpoint]: {
@@ -27,16 +26,11 @@ export const aside = style({
 export const frame = style({})
 
 export const title = style({
-  fontSize: dp(5.75),
-  fontWeight: 600,
   fontFamily: '"Mona Sans", "Pretendard", sans-serif',
-  marginBottom: dp(6),
-  '@media': {
-    [tocBreakpoint]: {
-      fontSize: dp(4.5),
-      marginBottom: dp(3),
-    },
-  },
+  fontSize: dp(4.5),
+  lineHeight: 1.3,
+  marginBlockStart: dp(8),
+  marginBlockEnd: dp(2),
 })
 
 export const tocFrame = style({

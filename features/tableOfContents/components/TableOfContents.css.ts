@@ -14,7 +14,12 @@ const listItemBase = style([
     lineHeight: 1.65,
   },
 ])
-export const listLink = style([link])
+export const listLink = style([
+  link,
+  {
+    textDecoration: 'none',
+  },
+])
 export const listitem = styleVariants({
   1: [
     listItemBase,

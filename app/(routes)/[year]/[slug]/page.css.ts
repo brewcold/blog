@@ -1,6 +1,6 @@
 import { style } from '@vanilla-extract/css'
 
-const tocBreakpoint = 'screen and (min-width: 62rem)'
+export const tocBreakpoint = 'screen and (min-width: 768px)'
 
 export const contentLayout = style({
   display: 'flex',
