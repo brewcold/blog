@@ -4,10 +4,10 @@ import * as css from './ColumnList.css'
 
 export function ColumnList({ block }: NotionComponentProps<'column_list'>) {
   if (!hasChildren(block)) return null
-  const columnCount = block.column_list.children?.length ?? 1
+  const count = (block.column_list.children?.length ?? 1) as 1 | 2 | 3 | 4 | 5
 
   return (
-    <div className={css.columnList} style={{ gridTemplateColumns: `repeat(${columnCount}, 1fr)` }}>
+    <div className={css.columnCount[count]}>
       <ChildrenBlocks childrenBlocks={block.column_list.children} />
     </div>
   )
