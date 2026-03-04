@@ -53,7 +53,7 @@ function NavigationContent() {
               default:
                 return (
                   <MenuBtn as={Link} href="/about" aria-label={`프로필 페이지로 이동합니다`}>
-                    YOOOOON
+                    Seungyoon Yu
                   </MenuBtn>
                 )
             }
