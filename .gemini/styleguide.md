@@ -169,3 +169,7 @@ export const useCheckout = () => {
 
 - 2depth 이상 props drilling 시 atom/context 고려
 - 순환 참조 금지
+
+## Language
+
+All review comments, summaries, and suggestions must be written in Korean (한국어).
