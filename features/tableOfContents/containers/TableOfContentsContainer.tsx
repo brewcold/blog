@@ -9,12 +9,14 @@ export function TableOfContentsContainer() {
 
   return (
     headings.length > 0 && (
-      <div className={css.frame}>
-        <h2 className={css.title}>목차</h2>
-        <div className={css.tocFrame}>
-          <RenderHeadings headings={headings} />
+      <aside className={css.aside}>
+        <div className={css.frame}>
+          <h2 className={css.title}>목차</h2>
+          <div className={css.tocFrame}>
+            <RenderHeadings headings={headings} />
+          </div>
         </div>
-      </div>
+      </aside>
     )
   )
 }
