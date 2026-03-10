@@ -42,22 +42,9 @@ function NavigationContent() {
     <>
       <div className={css.frame}>
         <div className={css.buttonGroup}>
-          {(() => {
-            switch (path) {
-              case '/about':
-                return (
-                  <MenuBtn as={Link} href="/" aria-label={`메인 화면으로 이동합니다`}>
-                    ←
-                  </MenuBtn>
-                )
-              default:
-                return (
-                  <MenuBtn as={Link} href="/about" aria-label={`프로필 페이지로 이동합니다`}>
-                    Seungyoon Yu
-                  </MenuBtn>
-                )
-            }
-          })()}
+          <MenuBtn as={Link} href="/" aria-label={`글 리스트 페이지로 이동합니다`}>
+            Seungyoon Yu
+          </MenuBtn>
         </div>
         <div className={css.buttonGroup}>
           <MenuBtn type="button" onClick={e => handleMenuButton(e, 'hamburger')} aria-label={`모든 글 리스트를 펼칩니다`}>
