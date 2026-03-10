@@ -6,7 +6,7 @@ import { layouts } from 'styles/vars/layouts.css'
 export const postListFrame = style({
   padding: layouts.full,
   paddingBottom: dp(20),
-  paddingTop: dp(40),
+  paddingTop: dp(12),
 })
 
 export const viewLink = style({
@@ -42,7 +42,7 @@ export const postLinkInner = style({
 })
 
 const postLinkTitleBase = style({
-  fontSize: dp(4),
+  fontSize: dp(4.25),
   fontFamily: '"Mona Sans", "Pretendard", monospace',
   fontWeight: 400,
   lineHeight: 1,
