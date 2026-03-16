@@ -1,9 +1,11 @@
 'use client'
 import { useIsomorphicLayoutEffect, useMediaQuery } from '@fische/react'
-import { createContext, type Dispatch, type ReactNode, type SetStateAction, useState } from 'react'
+import { createContext, type Dispatch, type ReactNode, type SetStateAction, useCallback, useMemo, useState } from 'react'
 
 const theme = ['system', 'light', 'dark'] as const
 type Theme = (typeof theme)[number]
+
+const localStorageKey = `YooooonBlogTheme`
 
 export function nextTheme(current: Theme) {
   const i = theme.indexOf(current)
@@ -27,16 +29,17 @@ const initialThemeContextValue: ThemeContext = {
 export const ThemeContext = createContext<ThemeContext>(initialThemeContextValue)
 
 export const ThemeProvider = ({ children }: { children: ReactNode }) => {
-  const localStorageKey = `YooooonBlogTheme`
-  const localSetting = typeof window !== 'undefined' ? (localStorage.getItem(localStorageKey) as Theme | null) : null
   const [prefersDark] = useMediaQuery('(prefers-color-scheme: dark)')
 
-  const [theme, setTheme] = useState<Theme>('system')
-  const appliedTheme: Theme = theme !== 'system' ? theme : prefersDark ? 'dark' : 'light'
+  const [theme, setTheme] = useState<Theme>(() => {
+    if (typeof window === 'undefined') return 'system'
+    return (localStorage.getItem(localStorageKey) as Theme) ?? 'system'
+  })
+  const appliedTheme: Exclude<Theme, 'system'> = theme !== 'system' ? theme : prefersDark ? 'dark' : 'light'
 
-  // 처음 렌더링될 때
+  // system preference 변경 시 theme이 'system'이면 동기화
   useIsomorphicLayoutEffect(() => {
-    theme === 'system' && setTheme(localSetting ?? appliedTheme)
+    theme === 'system' && setTheme(appliedTheme)
   }, [prefersDark])
 
   // theme, storage 동기화
@@ -45,18 +48,12 @@ export const ThemeProvider = ({ children }: { children: ReactNode }) => {
     localStorage.setItem(localStorageKey, theme)
   }, [theme])
 
-  const toggleTheme = () => setTheme(prev => nextTheme(prev))
+  const toggleTheme = useCallback(() => setTheme(prev => nextTheme(prev)), [])
 
-  return (
-    <ThemeContext.Provider
-      value={{
-        theme,
-        appliedTheme,
-        setTheme,
-        toggleTheme,
-      }}
-    >
-      {children}
-    </ThemeContext.Provider>
+  const value = useMemo(
+    () => ({ theme, appliedTheme, setTheme, toggleTheme }),
+    [theme, appliedTheme, toggleTheme],
   )
+
+  return <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>
 }

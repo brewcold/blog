@@ -10,7 +10,6 @@ import { ColumnList } from '../components/column/ColumnList'
 import { NumberedListItem } from '../components/list/NumberedListItem'
 import { BulletedListWrapper } from '../components/list/GroupedBulletList'
 import { NumberedListWrapper } from '../components/list/GroupedNumberedList'
-import { Code } from '../components/code/Code'
 import { NotionImg } from '../components/image/NotionImg'
 import { NotionFile } from '../components/file/NotionFile'
 import { Quote } from '../components/quote/Quote'
@@ -18,8 +17,10 @@ import { Bookmark } from '../components/bookmark/Bookmark'
 import { Toggle } from '../components/toggle/Toggle'
 import { NotionDivider } from '../components/divider/NotionDivider'
 import type { ExtendedBlockTypes, NotionBlockComponent } from 'features/notion/types'
-import { Equation } from '../components/equation/Equation'
 import { Table } from '../components/table/Table'
+import dynamic from 'next/dynamic'
+import { Code } from '../components/code/Code'
+const Equation = dynamic(() => import('../components/equation/Equation').then(c => ({ default: c.Equation })))
 
 export const blockComponentMap: Partial<{ [K in ExtendedBlockTypes]: NotionBlockComponent<K> }> = {
   bookmark: Bookmark,
