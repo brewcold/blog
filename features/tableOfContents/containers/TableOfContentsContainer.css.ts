@@ -13,7 +13,7 @@ export const aside = style({
       position: 'sticky',
       top: dp(6),
       alignSelf: 'flex-start',
-      width: '17.5rem',
+      width: '18rem',
       flexShrink: 0,
       paddingInline: 0,
       marginLeft: dp(6),

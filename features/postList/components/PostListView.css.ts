@@ -4,7 +4,7 @@ import { color } from 'styles/vars/color.css'
 import { layouts } from 'styles/vars/layouts.css'
 
 export const postListFrame = style({
-  padding: 0,
+  paddingInline: layouts.full,
   paddingBottom: dp(20),
   paddingTop: dp(12),
   maxWidth: layouts.width,

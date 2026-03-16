@@ -1,6 +1,5 @@
 import { style } from '@vanilla-extract/css'
 import { dp } from 'styles/dp'
-import { breakpoints } from 'styles/vars/breakpoints.css'
 import { color } from 'styles/vars/color.css'
 import { layouts } from 'styles/vars/layouts.css'
 
@@ -11,9 +10,7 @@ export const container = style({
   alignItems: 'center',
   justifyContent: 'center',
   position: 'fixed',
-  paddingTop: dp(3),
   paddingBottom: 'env(safe-area-inset-bottom)',
-  paddingInline: dp(3),
   transform: 'translateY(0)',
 })
 
@@ -28,6 +25,7 @@ export const frame = style({
   height: dp(12),
   width: '100%',
   alignItems: 'center',
+  paddingInline: layouts.full,
 })
 
 export const buttonGroup = style({
