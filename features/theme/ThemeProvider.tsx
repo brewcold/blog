@@ -31,10 +31,12 @@ export const ThemeContext = createContext<ThemeContext>(initialThemeContextValue
 export const ThemeProvider = ({ children }: { children: ReactNode }) => {
   const [prefersDark] = useMediaQuery('(prefers-color-scheme: dark)')
 
-  const [theme, setTheme] = useState<Theme>(() => {
-    if (typeof window === 'undefined') return 'system'
-    return (localStorage.getItem(localStorageKey) as Theme) ?? 'system'
-  })
+  const [theme, setTheme] = useState<Theme>('system')
+
+  useIsomorphicLayoutEffect(() => {
+    const saved = localStorage.getItem(localStorageKey) as Theme | null
+    if (saved) setTheme(saved)
+  }, [])
   const appliedTheme: Exclude<Theme, 'system'> = theme !== 'system' ? theme : prefersDark ? 'dark' : 'light'
 
   // system preference 변경 시 theme이 'system'이면 동기화
