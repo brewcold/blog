@@ -3,9 +3,10 @@ import type { NotionComponentProps } from 'features/notion/types'
 import { hasChildren } from 'features/notion/types'
 import { ChildrenBlocks } from '../../containers/ChildrenBlocks'
 import { getPlainText } from '../richText/getPlainText'
-import { Youtube } from '../_customBlocks/Youtube'
 import * as css from './Paragraph.css'
 import { RichText } from '../richText/RichText'
+import dynamic from 'next/dynamic'
+const Youtube = dynamic(() => import('../_customBlocks/Youtube').then(c => ({ default: c.Youtube })))
 
 const YOUTUBE_REGEX = /<<(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/watch\?v=|youtu\.be\/)([\w-]+)(?:[^\s>]*)?>>/
 
