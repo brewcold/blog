@@ -1,33 +1,58 @@
 /** biome-ignore-all lint/security/noDangerouslySetInnerHtml: render codeblock html */
-'use client'
-import hljs from 'highlight.js'
+import hljs from 'highlight.js/lib/core'
 import 'styles/hljs.css'
-import { useTextCopy } from '@fische/react'
-import { CheckIcon, CopyIcon } from '@radix-ui/react-icons'
+import bash from 'highlight.js/lib/languages/bash'
+import css from 'highlight.js/lib/languages/css'
+import java from 'highlight.js/lib/languages/java'
+import javascript from 'highlight.js/lib/languages/javascript'
+import json from 'highlight.js/lib/languages/json'
+import markdown from 'highlight.js/lib/languages/markdown'
+import python from 'highlight.js/lib/languages/python'
+import html from 'highlight.js/lib/languages/html'
+import typescript from 'highlight.js/lib/languages/typescript'
+import xml from 'highlight.js/lib/languages/xml'
+import yaml from 'highlight.js/lib/languages/yaml'
+import plaintext from 'highlight.js/lib/languages/plaintext'
 import type { NotionComponentProps } from 'features/notion/types'
 import { getCodeLang } from './getCodeLang'
-import { color } from 'styles/vars/color.css'
 import { getPlainText } from '../richText/getPlainText'
-import * as css from './Code.css'
+import * as codeCss from './Code.css'
+import { CopyBtn } from './CopyBtn'
+
+hljs.registerLanguage('javascript', javascript)
+hljs.registerLanguage('typescript', typescript)
+hljs.registerLanguage('jsx', javascript)
+hljs.registerLanguage('tsx', typescript)
+hljs.registerLanguage('html', html)
+hljs.registerLanguage('css', css)
+hljs.registerLanguage('plaintext', plaintext)
+hljs.registerLanguage('xml', xml)
+hljs.registerLanguage('svg', xml)
+hljs.registerLanguage('json', json)
+hljs.registerLanguage('markdown', markdown)
+hljs.registerLanguage('yaml', yaml)
+hljs.registerLanguage('bash', bash)
+hljs.registerLanguage('shell', bash)
+hljs.registerLanguage('java', java)
+hljs.registerLanguage('python', python)
+
+function highlightCode(code: string, language: string): string {
+  if (!hljs.getLanguage(language)) return hljs.highlightAuto(code).value
+  return hljs.highlight(code, { language }).value
+}
 
 export function Code({ block }: NotionComponentProps<'code'>) {
-  'use memo'
   const codeLang = getCodeLang(block.code.language)
   const codeText = getPlainText(block.code.rich_text)
-  const codeHtml = hljs.highlight(codeText, {
-    language: block.code.language,
-  }).value
+  const codeHtml = highlightCode(codeText, block.code.language)
 
-  const [copy, isCopied] = useTextCopy(1000)
   return (
-    <div className={css.codeFrame}>
-      <div className={css.codeHeader}>
-        <span className={css.codeLang}>{codeLang}</span>
-        <button type="button" className={css.copyCode} onClick={() => copy(codeText)}>
-          {isCopied ? <CheckIcon color={color.ok} /> : <CopyIcon />}
-        </button>
+    <div className={codeCss.codeFrame}>
+      <div className={codeCss.codeHeader}>
+        <span className={codeCss.codeLang}>{codeLang}</span>
+        <CopyBtn codeText={codeText} />
       </div>
-      <pre dangerouslySetInnerHTML={{ __html: codeHtml }} className={css.codeBlock} />
+      <pre dangerouslySetInnerHTML={{ __html: codeHtml }} className={codeCss.codeBlock} />
     </div>
   )
 }
