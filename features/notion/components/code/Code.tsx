@@ -2,13 +2,10 @@
 import hljs from 'highlight.js/lib/core'
 import 'styles/hljs.css'
 import bash from 'highlight.js/lib/languages/bash'
-import css from 'highlight.js/lib/languages/css'
 import java from 'highlight.js/lib/languages/java'
 import javascript from 'highlight.js/lib/languages/javascript'
 import json from 'highlight.js/lib/languages/json'
-import markdown from 'highlight.js/lib/languages/markdown'
 import python from 'highlight.js/lib/languages/python'
-import html from 'highlight.js/lib/languages/html'
 import typescript from 'highlight.js/lib/languages/typescript'
 import xml from 'highlight.js/lib/languages/xml'
 import yaml from 'highlight.js/lib/languages/yaml'
@@ -23,13 +20,10 @@ hljs.registerLanguage('javascript', javascript)
 hljs.registerLanguage('typescript', typescript)
 hljs.registerLanguage('jsx', javascript)
 hljs.registerLanguage('tsx', typescript)
-hljs.registerLanguage('html', html)
-hljs.registerLanguage('css', css)
 hljs.registerLanguage('plaintext', plaintext)
 hljs.registerLanguage('xml', xml)
 hljs.registerLanguage('svg', xml)
 hljs.registerLanguage('json', json)
-hljs.registerLanguage('markdown', markdown)
 hljs.registerLanguage('yaml', yaml)
 hljs.registerLanguage('bash', bash)
 hljs.registerLanguage('shell', bash)
