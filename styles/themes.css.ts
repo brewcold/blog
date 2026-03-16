@@ -1,11 +1,10 @@
 import { globalStyle } from '@vanilla-extract/css'
-import { dp } from './dp'
 import { color } from './vars/color.css'
 import { layouts } from './vars/layouts.css'
 
 globalStyle(':root', {
   vars: {
-    [layouts.full]: dp(3),
+    [layouts.full]: '0',
     [layouts.width]: '61.5rem',
   },
 })
