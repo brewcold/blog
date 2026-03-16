@@ -30,7 +30,7 @@ hljs.registerLanguage('shell', bash)
 hljs.registerLanguage('java', java)
 hljs.registerLanguage('python', python)
 
-function highlightCode(code: string, language: string): string {
+export function highlightCode(code: string, language: string): string {
   if (!hljs.getLanguage(language)) return hljs.highlightAuto(code).value
   return hljs.highlight(code, { language }).value
 }
