@@ -6,6 +6,7 @@ import { layouts } from './vars/layouts.css'
 globalStyle(':root', {
   vars: {
     [layouts.full]: dp(3),
+    [layouts.width]: '61.5rem',
   },
 })
 

@@ -4,12 +4,14 @@ import { breakpoints } from 'styles/vars/breakpoints.css'
 import { layouts } from 'styles/vars/layouts.css'
 
 export const frame = style({
-  margin: '0',
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'flex-start',
   paddingInline: layouts.full,
   marginBottom: dp(12),
+  marginInline: 'auto',
+  maxWidth: layouts.width,
+  width: '100%',
   backgroundColor: 'transparent',
   '@media': {
     [breakpoints.desktop_wide]: {},

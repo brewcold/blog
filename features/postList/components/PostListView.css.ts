@@ -7,6 +7,8 @@ export const postListFrame = style({
   padding: layouts.full,
   paddingBottom: dp(20),
   paddingTop: dp(12),
+  maxWidth: layouts.width,
+  marginInline: 'auto',
 })
 
 export const viewLink = style({

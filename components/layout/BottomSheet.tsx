@@ -4,10 +4,12 @@ import { clamp } from 'utils/clamp'
 
 interface Props extends ComponentProps<'div'> {
   unmount: () => void
+  isOpen?: boolean
+  close?: () => void
   size: 'full' | 'half'
 }
 
-export function BottomSheet({ size, unmount, ...props }: Props) {
+export function BottomSheet({ size, unmount, isOpen, close, ...props }: Props) {
   const openSnap = size === 'full' ? 1 : 0.5
   const SNAP_POINTS = useMemo(() => (size === 'full' ? [0, 1] : [0, 0.5, 1]), [size])
 
@@ -23,6 +25,14 @@ export function BottomSheet({ size, unmount, ...props }: Props) {
     const id = requestAnimationFrame(() => setPos(openSnap))
     return () => cancelAnimationFrame(id)
   }, [openSnap])
+
+  useEffect(() => {
+    if (isOpen === false) {
+      setPos(0)
+      const t = setTimeout(unmount, 150)
+      return () => clearTimeout(t)
+    }
+  }, [isOpen, unmount])
 
   const handlePointerDown = (e: PointerEvent) => {
     setDragging(true)
@@ -41,6 +51,7 @@ export function BottomSheet({ size, unmount, ...props }: Props) {
 
     if (snapped === 0) {
       setPos(0)
+      close?.()
       unmount()
       return
     }
@@ -61,6 +72,7 @@ export function BottomSheet({ size, unmount, ...props }: Props) {
     const snapped = SNAP_POINTS.reduce((acc, s) => (Math.abs(s - pos) < Math.abs(acc - pos) ? s : acc), SNAP_POINTS[0])
     if (snapped === 0) {
       setPos(0)
+      close?.()
       unmount()
     } else {
       setPos(snapped)
@@ -80,6 +92,7 @@ export function BottomSheet({ size, unmount, ...props }: Props) {
         }}
         onClick={() => {
           setPos(0)
+          close?.()
           unmount()
         }}
         aria-hidden>
@@ -87,7 +100,7 @@ export function BottomSheet({ size, unmount, ...props }: Props) {
           ref={sheetRef}
           className={css.base}
           style={{
-            transform: `translateY(${(1 - pos) * 3.5}%)`,
+            transform: `translateY(${(1 - pos) * 100}%)`,
             opacity: pos === 0 ? 0 : 1,
             transition: dragging ? 'none' : 'transform 0.15s ease, opacity 0.1s ease',
           }}
