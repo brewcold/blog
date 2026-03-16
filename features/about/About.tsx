@@ -8,7 +8,7 @@ export function About() {
   const aboutBlocks = useAtomValue(aboutPostBlockAtom)
   return (
     <div className={css.aboutFrame}>
-      <div>
+      <div className={css.aboutContent}>
         <RenderNotion blocks={aboutBlocks} />
       </div>
     </div>
