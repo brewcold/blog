@@ -1,10 +1,10 @@
 'use client'
 import { HamburgerIcon } from '../components/HamburgerIcon'
+import { BottomSheet } from 'components/layout/BottomSheet'
 import { nextTheme, ThemeContext } from 'features/theme'
 import Link from 'next/link'
-import { usePathname } from 'next/navigation'
-import { type MouseEvent, useContext } from 'react'
-import { ExpandedNav } from '../components/ExpandedNav'
+import { type MouseEvent, useContext, useRef } from 'react'
+import { overlay } from 'overlay-kit'
 import { HamburgerMenu } from './HamburgerMenu'
 import { MenuBtn } from './MenuButton'
 import * as css from './Navigation.css'
@@ -19,27 +19,53 @@ export function Navigation() {
 }
 
 function NavigationContent() {
-  const path = usePathname()
   const { theme, toggleTheme } = useContext(ThemeContext)
   const { key, setOpenState } = useContext(NavContext)
-  const handleMenuClose = () => setOpenState({ type: 'close' })
-  const handleMenuButton = (e: MouseEvent, to: MenuKeys) => {
-    e.stopPropagation()
-    if (key === to) handleMenuClose()
-    else setOpenState({ type: 'open', key: to })
-  }
+  const overlayIdRef = useRef<string | null>(null)
 
-  const expandedNavContent = (key?: MenuKeys) => {
-    switch (key) {
-      case 'hamburger':
-        return <HamburgerMenu onClose={handleMenuClose} />
-      default:
-        return null
+  const handleMenuClose = () => {
+    setOpenState({ type: 'close' })
+    if (overlayIdRef.current) {
+      overlay.close(overlayIdRef.current)
+      overlayIdRef.current = null
     }
   }
 
+  const handleMenuButton = (e: MouseEvent, to: MenuKeys) => {
+    e.stopPropagation()
+    if (key === to) {
+      handleMenuClose()
+      return
+    }
+    setOpenState({ type: 'open', key: to })
+
+    const content = (() => {
+      switch (to) {
+        case 'hamburger':
+          return <HamburgerMenu onClose={handleMenuClose} />
+        default:
+          return null
+      }
+    })()
+
+    const id = overlay.open(({ isOpen, close, unmount }) => (
+      <BottomSheet
+        isOpen={isOpen}
+        close={() => {
+          close()
+          setOpenState({ type: 'close' })
+          overlayIdRef.current = null
+        }}
+        unmount={unmount}
+        size="full">
+        {content}
+      </BottomSheet>
+    ))
+    overlayIdRef.current = id
+  }
+
   return (
-    <>
+    <div className={css.container}>
       <div className={css.frame}>
         <div className={css.buttonGroup}>
           <MenuBtn as={Link} href="/" aria-label={`글 리스트 페이지로 이동합니다`}>
@@ -72,7 +98,6 @@ function NavigationContent() {
           </MenuBtn>
         </div>
       </div>
-      <ExpandedNav isOpen={key !== null} onClose={handleMenuClose} content={expandedNavContent(key)} />
-    </>
+    </div>
   )
 }
