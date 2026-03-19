@@ -22,11 +22,11 @@ export const base = style({
   left: 0,
   right: 0,
   bottom: 0,
-  margin: 0,
+  margin: `0 ${dp(3)}`,
   maxHeight: 'calc(100dvh - 4.5rem)',
   background: color.background,
-  borderTopLeftRadius: dp(4),
-  borderTopRightRadius: dp(4),
+  borderTopLeftRadius: dp(2),
+  borderTopRightRadius: dp(2),
   pointerEvents: 'auto',
   display: 'flex',
   flexDirection: 'column',
@@ -59,6 +59,4 @@ export const handleBar = style({
   },
 })
 
-export const contentFrame = style({
-  padding: dp(6),
-})
+export const contentFrame = style({})
