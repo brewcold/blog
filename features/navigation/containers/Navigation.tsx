@@ -1,14 +1,11 @@
 "use client";
-import { HamburgerIcon } from "../components/HamburgerIcon";
-import { BottomSheet } from "components/layout/BottomSheet";
+
 import { nextTheme, ThemeContext } from "features/theme";
 import Link from "next/link";
-import { type MouseEvent, useContext, useRef } from "react";
-import { overlay } from "overlay-kit";
-import { HamburgerMenu } from "./HamburgerMenu";
+import { useContext } from "react";
 import { MenuBtn } from "./MenuButton";
 import * as css from "./Navigation.css";
-import { type MenuKeys, NavContext, NavProvider } from "./NavigationProvider";
+import { NavProvider } from "./NavigationProvider";
 
 export function Navigation() {
   return (
