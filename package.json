@@ -17,6 +17,7 @@
     "babel-plugin-react-compiler": "^1.0.0",
     "clsx": "^2.1.1",
     "dayjs": "^1.11.18",
+    "es-hangul": "^2.3.8",
     "highlight.js": "^11.11.1",
     "jotai": "^2.14.0",
     "katex": "^0.16.25",
