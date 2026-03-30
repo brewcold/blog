@@ -2,6 +2,7 @@
 import { MagnifyingGlassIcon } from "@radix-ui/react-icons";
 import * as css from "./PostSearchFilter.css";
 import { dp } from "styles/dp";
+import { color } from "styles/vars/color.css";
 
 interface PostSearchFilterProps {
   keyword: string;
@@ -25,7 +26,11 @@ export function PostSearchFilter({
   return (
     <div className={css.filterFrame}>
       <div className={css.filterInputFrame}>
-        <MagnifyingGlassIcon width={dp(4.25)} height={dp(4.25)} />
+        <MagnifyingGlassIcon
+          color={color.text}
+          width={dp(4.25)}
+          height={dp(4.25)}
+        />
         <input
           type="text"
           className={css.searchInput}
